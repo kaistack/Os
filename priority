@@ -1,0 +1,31 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <algorithm>
+
+using namespace std;
+
+struct Process {
+    int id;
+    int burstTime;
+    int priority;
+    int remainingTime;
+};
+
+bool comparePriority(const Process& p1, const Process& p2) {
+    return p1.priority > p2.priority; // Higher priority has lower numerical value
+}
+
+bool compareBurstTime(const Process& p1, const Process& p2) {
+    return p1.burstTime < p2.burstTime; // Shortest burst time first
+}
+
+void priorityScheduling(vector<Process>& processes) {
+    sort(processes.begin(), processes.end(), comparePriority);
+
+    cout << "Priority Scheduling:" << endl;
+    for (const Process& process : processes) {
+        cout << "Process " << process.id << ": Priority=" << process.priority << ", Burst Time=" << process.burstTime << endl;
+    }
+    cout << "-------------------------" << endl;
+}
